@@ -21,6 +21,13 @@ console.log(enemyNames.length);
 console.log(enemyNames[0]);
 console.log(enemyNames[3]);
 
+// function to generate a random numeric order
+var randomNumber = function() {
+    var value = Math.floor(math.random() * 21) + 40;
+
+    return value;
+}
+
 
 // if player chooses to fight
 var fight = function (enemyName) {
@@ -39,14 +46,14 @@ var fight = function (enemyName) {
             if (confirmSkip) {
                 window.alert(playerName + " has decided to skip fight. Goodbye!");
                 // subtract money for skipping
-                playerMoney = playerMoney - 10;
+                playerMoney = Math.max(0, playerMoney - 10);
                 console.log("playerMoney", playerMoney);
                 break;
             }
         }
 
         // Subtract the value of 'playerAttack' from 'enemyHealth'
-        enemyHealth = enemyHealth - playerAttack;
+        enemyHealth = Math.max(0, enemyHealth - playerAttack);
         // Log a resulting message to the console so we know that it worked.
         console.log(
             playerName + " attacked " + enemyName + ". " + enemyName + " now has " + enemyHealth + " health remaining."
@@ -61,7 +68,7 @@ var fight = function (enemyName) {
         }
 
         // Subtract the value of `enemyAttack` from the value of `playerHealth` and use that result to update the value in the `playerHealth` variable.
-        playerHealth = playerHealth - enemyAttack;
+        playerHealth = Math.max(0, playerHealth - enemyAttack);
         // Log a resulting message to the console so we know that it worked.
         console.log(
             enemyName + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining."
@@ -89,7 +96,7 @@ var startGame = function() {
         if (playerHealth > 0) {
             window.alert("Welcome Robot Gladiators! Round " + (i + 1) );
             var pickedEnemyName = enemyNames[i];
-            enemyHealth = 50;
+            enemyHealth = randomNumber
             //debugger;
             fight(pickedEnemyName);
 
